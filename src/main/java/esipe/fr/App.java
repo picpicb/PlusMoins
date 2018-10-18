@@ -13,20 +13,22 @@ public class App
         System.out.println( "Bienvenue dans le jeu Plus ou Moins !" );
         System.out.println( "Quel est votre prénom ?" );
         Scanner scan = new Scanner(System.in);
-        Utilisateur user = new Utilisateur();
+        User user = new User();
         user.setPrenom(scan.nextLine());
-        GameEngine game = new GameEngine(user,new NbAleatoireService(1,10));
         while(true){
+            GameEngine game = new GameEngine(user,new NbAleatoireService(1,1000));
             game.startGame();
             System.out.println( "Voulez-vous rejouer ? (y/n)" );
             String ans = scan.nextLine();
-            if(ans.equals("y")){
-                game = new GameEngine(user,new NbAleatoireService(1,10));
-                game.startGame();
-            }else if(ans.equals("n")){
-                System.exit(0);
-            }else{
-                System.exit(0);
+            switch (ans) {
+                case "y":
+                    break;
+                case "n":
+                    System.exit(0);
+                    break;
+                default:
+                    System.exit(0);
+                    break;
             }
         }
     }

@@ -1,11 +1,11 @@
 package esipe.fr;
 
-public class Utilisateur{
+public class User {
     private String prenom;
     private int score;
 
 
-    public Utilisateur (){
+    public User(){
 
     }
 

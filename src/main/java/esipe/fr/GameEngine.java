@@ -1,16 +1,15 @@
 package esipe.fr;
 
 import java.util.Scanner;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class GameEngine{
     private int nb;
     private INBAleatoireService randService;
-    private Utilisateur user;
+    private User user;
     private boolean stop;
     Scanner scan;
 
-    public GameEngine(Utilisateur user, INBAleatoireService randService){
+    public GameEngine(User user, INBAleatoireService randService){
             scan = new Scanner(System.in);
             this.randService = randService;
             this.user = user;
@@ -18,9 +17,10 @@ public class GameEngine{
             nb = randService.getNbAlea();
     }
 
+
     public void startGame(){
         stop = false;
-        System.out.println("Bonjour "+ user.getPrenom() + ", votre dernier score est : "+ user.getScore());
+        System.out.println("Bonjour "+ user.getPrenom() + ", votre meilleur score est : "+ user.getScore());
         System.out.println( "Entrez une valeur" );
         int cpt = 0;
         while (!stop){
@@ -37,10 +37,16 @@ public class GameEngine{
             }
         }
         System.out.println( "Bravo !" );
-        if(cpt < user.getScore() || user.getScore() == 0 ) {
-            user.setScore(cpt);
+        saveBestScrore(cpt,user);
+
+    }
+
+    public void saveBestScrore(int score, User user){
+        if(score < user.getScore() || user.getScore() == 0 ) {
+            user.setScore(score);
         }
     }
+
     public boolean isCorrect(int nombre){
         if(nombre == this.nb){
             return true;
