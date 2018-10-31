@@ -18,7 +18,7 @@ public class App
         while(true){
             GameEngine game = new GameEngine(user,new NbAleatoireService(1,1000));
             game.startGame();
-            System.out.println( "Voulez-vous rejouer ?? (y/n)" );
+            System.out.println( "Voulez-vous rejouer ? (y/n)" );
             String ans = scan.nextLine();
             switch (ans) {
                 case "y":
